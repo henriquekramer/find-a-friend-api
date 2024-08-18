@@ -28,7 +28,7 @@ model Org {
 
   created_at DateTime @default(now())
 
-  @@map("organizations")
+  @@map("orgs")
 }
 
 model Pet {
