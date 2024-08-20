@@ -1,5 +1,3 @@
-import { OrgsRepository } from '@/repositories/orgs-repository'
-import { PetsRepository } from '@/repositories/pets-repository'
 import {
   Pet,
   PetAge,
@@ -7,6 +5,8 @@ import {
   PetEnvironment,
   PetSize,
 } from '@prisma/client'
+import { OrgsRepository } from '@/repositories/orgs-repository'
+import { PetsRepository } from '@/repositories/pets-repository'
 import { OrgNotFoundError } from './errors/org-not-found-error'
 
 interface CreatePetUseCaseRequest {
