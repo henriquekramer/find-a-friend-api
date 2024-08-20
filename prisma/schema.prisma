@@ -15,7 +15,7 @@ model Org {
   whatsapp      String
   password_hash String
 
-  cep          String
+  zip_code     String
   state        String
   city         String
   neighborhood String
@@ -26,22 +26,45 @@ model Org {
   latitude  Decimal
   longitude Decimal
 
-  created_at DateTime @default(now())
-
   @@map("orgs")
 }
 
+enum PetAge {
+  PUPPY
+  ADULT
+  SENIOR
+}
+
+enum PetSize {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
+enum PetEnergyLevel {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum PetEnvironment {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
 model Pet {
-  id           String @id @default(uuid())
+  id           String         @id @default(uuid())
   name         String
   about        String
-  age          String
-  size         String
-  energy_level String
-  environment  String
-  org_id       String
+  age          PetAge
+  size         PetSize
+  energy_level PetEnergyLevel
+  environment  PetEnvironment
+  requirements String[]
 
-  org Org @relation(fields: [org_id], references: [id])
+  org    Org    @relation(fields: [org_id], references: [id])
+  org_id String
 
   @@map("pets")
 }
