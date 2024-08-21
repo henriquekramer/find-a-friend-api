@@ -39,13 +39,12 @@ export class CreateOrgUseCase {
     whatsapp,
     zip_code,
   }: CreateOrgUseCaseRequest): Promise<CreateOrgUseCaseResponse> {
-    const password_hash = await hash(password, 6)
-
     const orgWithSameEmail = await this.orgsRepository.findByEmail(email)
 
     if (orgWithSameEmail) {
       throw new OrgAlreadyExistsError()
     }
+    const password_hash = await hash(password, 6)
 
     const org = await this.orgsRepository.create({
       name,

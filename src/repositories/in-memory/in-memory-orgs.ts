@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Prisma, Org } from '@prisma/client'
-import { randomUUID } from 'node:crypto'
+import crypto from 'node:crypto'
 import { FindManyNearbyParams, OrgsRepository } from '../orgs-repository'
 import { Decimal } from '@prisma/client/runtime/library'
 import { getDistanceBetweenCoordinates } from '@/utils/get-distance-between-coordinates'
