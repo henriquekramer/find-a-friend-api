@@ -35,7 +35,7 @@ describe('Create Org Use Case', () => {
     const password = '123456'
     const { org } = await sut.execute(makeOrg({ password }))
 
-    const isPasswordCorrectlyHashed = await compare(password, org.password_hash)
+    const isPasswordCorrectlyHashed = await compare(password, org.password)
 
     expect(isPasswordCorrectlyHashed).toBe(true)
   })

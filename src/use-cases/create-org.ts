@@ -54,7 +54,7 @@ export class CreateOrgUseCase {
       latitude,
       longitude,
       neighborhood,
-      password_hash,
+      password: password_hash,
       state,
       street,
       whatsapp,
