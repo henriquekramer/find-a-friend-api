@@ -12,15 +12,12 @@ export async function authenticate(
     password: z.string().min(6),
   })
 
-  const { email, password } = authenticateBodySchema.parse(request.body)
+  const body = authenticateBodySchema.parse(request.body)
 
   try {
     const authenticateUseCase = makeAuthenticateOrgUseCase()
 
-    const { org } = await authenticateUseCase.execute({
-      email,
-      password,
-    })
+    const { org } = await authenticateUseCase.execute(body)
 
     const token = await reply.jwtSign(
       {},
