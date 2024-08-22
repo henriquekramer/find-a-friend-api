@@ -23,42 +23,15 @@ const createOrgBodySchema = z.object({
 })
 
 export async function create(request: FastifyRequest, reply: FastifyReply) {
-  const {
-    name,
-    author_name,
-    city,
-    email,
-    latitude,
-    longitude,
-    neighborhood,
-    password,
-    state,
-    street,
-    whatsapp,
-    zip_code,
-  } = createOrgBodySchema.parse(request.body)
+  const body = createOrgBodySchema.parse(request.body)
 
   const createOrgUseCase = makeCreateOrgUseCase()
 
   try {
-    const { org } = await createOrgUseCase.execute({
-      name,
-      author_name,
-      city,
-      email,
-      latitude,
-      longitude,
-      neighborhood,
-      password,
-      state,
-      street,
-      whatsapp,
-      zip_code,
-    })
+    const { org } = await createOrgUseCase.execute(body)
 
     return reply.status(201).send(org)
   } catch (error) {
-    console.log('🚀 ~ create ~ error:', error)
     if (error instanceof OrgAlreadyExistsError) {
       return reply.status(400).send({ message: error.message })
     }
