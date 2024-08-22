@@ -1,6 +1,7 @@
 import { FastifyReply, FastifyRequest } from 'fastify'
 import { z } from 'zod'
 import { makeCreateOrgUseCase } from '@/use-cases/factories/make-create-org-use-case'
+import { OrgAlreadyExistsError } from '@/use-cases/errors/org-already-exists-error'
 
 const createOrgBodySchema = z.object({
   name: z.string(),
@@ -8,7 +9,7 @@ const createOrgBodySchema = z.object({
   email: z.string().email(),
   whatsapp: z.string(),
   password: z.string().min(6),
-  zipCode: z.string(),
+  zip_code: z.string(),
   state: z.string(),
   city: z.string(),
   neighborhood: z.string(),
@@ -34,25 +35,32 @@ export async function create(request: FastifyRequest, reply: FastifyReply) {
     state,
     street,
     whatsapp,
-    zipCode,
+    zip_code,
   } = createOrgBodySchema.parse(request.body)
 
   const createOrgUseCase = makeCreateOrgUseCase()
 
-  await createOrgUseCase.execute({
-    name,
-    author_name,
-    city,
-    email,
-    latitude,
-    longitude,
-    neighborhood,
-    password,
-    state,
-    street,
-    whatsapp,
-    zip_code: zipCode,
-  })
+  try {
+    const { org } = await createOrgUseCase.execute({
+      name,
+      author_name,
+      city,
+      email,
+      latitude,
+      longitude,
+      neighborhood,
+      password,
+      state,
+      street,
+      whatsapp,
+      zip_code,
+    })
 
-  return reply.status(201).send()
+    return reply.status(201).send(org)
+  } catch (error) {
+    console.log('🚀 ~ create ~ error:', error)
+    if (error instanceof OrgAlreadyExistsError) {
+      return reply.status(400).send({ message: error.message })
+    }
+  }
 }
