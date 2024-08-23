@@ -22,7 +22,10 @@ const createOrgBodySchema = z.object({
   }),
 })
 
-export async function create(request: FastifyRequest, reply: FastifyReply) {
+export async function createOrgController(
+  request: FastifyRequest,
+  reply: FastifyReply,
+) {
   const body = createOrgBodySchema.parse(request.body)
 
   const createOrgUseCase = makeCreateOrgUseCase()

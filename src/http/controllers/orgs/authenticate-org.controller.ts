@@ -3,7 +3,7 @@ import { InvalidCredentialsError } from '@/use-cases/errors/invalid-credentials-
 import { z } from 'zod'
 import { makeAuthenticateOrgUseCase } from '@/use-cases/factories/make-authenticate-org-use-case'
 
-export async function authenticate(
+export async function authenticateOrgController(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
