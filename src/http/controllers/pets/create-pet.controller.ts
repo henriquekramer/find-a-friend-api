@@ -14,7 +14,10 @@ const createPetBodySchema = z.object({
   requirements: z.array(z.string()),
 })
 
-export async function create(request: FastifyRequest, reply: FastifyReply) {
+export async function createPetController(
+  request: FastifyRequest,
+  reply: FastifyReply,
+) {
   const body = createPetBodySchema.parse(request.body)
 
   const createPetUseCase = makeCreatePetUseCase()
