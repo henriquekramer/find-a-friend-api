@@ -10,11 +10,11 @@ Este projeto consiste em uma API para adoção de animais. A API é projetada pa
 
 ## Techs
 
-- **Node.js:** 
-- **Fastify:** 
-- **TypeScript:** 
-- **Prisma:** 
-- **Zod:** 
+- **Node.js** 
+- **Fastify** 
+- **TypeScript** 
+- **Prisma** 
+- **Zod** 
 
 ## Endpoints
 
