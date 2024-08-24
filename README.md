@@ -8,6 +8,14 @@ Este projeto consiste em uma API para adoção de animais. A API é projetada pa
 
 - **Pets:** Animais disponíveis para adoção. Cada pet possui informações detalhadas, como nome, descrição, idade, tamanho, nível de energia, ambiente ideal e requisitos especiais para adoção. Os detalhes dos pets são gerenciados pelas organizações e podem ser consultados por usuários interessados na adoção.
 
+## Techs
+
+- **Node.js:** 
+- **Fastify:** 
+- **TypeScript:** 
+- **Prisma:** 
+- **Zod:** 
+
 ## Endpoints
 
 ### Criar Organização
